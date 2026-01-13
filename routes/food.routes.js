@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 
 const foodController = require('../src/controllers/food.controller');
 const authMiddleware = require('../src/middlewares/auth.middleware');
-const authFoodPartnerMiddleware = authMiddleware.authFoodPartnerMiddleware;
-const authUserMiddleware = authMiddleware.authUserMiddleware;
-const multer = require('multer');
+
 const upload = multer({ storage: multer.memoryStorage() });
 
+// ✅ CREATE FOOD (ONLY PARTNER)
 router.post(
   '/',
   authMiddleware.authFoodPartnerMiddleware,
@@ -15,15 +15,15 @@ router.post(
   foodController.createFood
 );
 
+// ✅ GET ALL FOODS (PUBLIC)
 router.get(
   '/',
-  authMiddleware.authUserMiddleware,
   foodController.getFoodItems
 );
 
+// ✅ GET PARTNER FOODS (PUBLIC)
 router.get(
   '/partner/:id',
-  authMiddleware.authUserMiddleware,
   foodController.getFoodsByPartner
 );
 
