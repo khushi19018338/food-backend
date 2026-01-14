@@ -50,6 +50,7 @@ async function getFoodsByPartner(req, res) {
 
 module.exports = {
     createFood,
-    getFoodItems
+    getFoodItems,
+    getFoodsByPartner
 };
-module.exports.getFoodsByPartner = getFoodsByPartner;
+

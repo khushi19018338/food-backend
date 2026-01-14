@@ -75,7 +75,7 @@ async function logoutUser(req, res) {
 async function registerFoodPartner(req, res) {
     const { businessName, email,contactNumber,address,cuisineType, password } = req.body;
 
-    const isPartnerAlreadyExists = await userModel.findOne({ email });
+    const isPartnerAlreadyExists = await foodPartnerModel.findOne({ email });
     if (isPartnerAlreadyExists) {
         return res.status(400).json({ message: 'Partner already exists' });
     }
@@ -102,6 +102,7 @@ async function registerFoodPartner(req, res) {
 
     res.status(201).json({
         message: 'Food partner registered successfully',
+        token,
         foodPartner: {
             _id: foodPartner._id,
             businessName: foodPartner.businessName,
@@ -133,6 +134,7 @@ async function loginFoodPartner(req,res){
 
     res.status(200).json({
         message: ' food partner Login successful',
+        token,
         foodPartner: {
             _id: foodPartner._id,
             businessName: foodPartner.businessName,
@@ -159,7 +161,8 @@ module.exports = {
     logoutUser,
     registerFoodPartner,
     loginFoodPartner,
-    logoutFoodPartner
+    logoutFoodPartner,
+    getFoodPartnerById
 };
 // export helper looked-up function
 module.exports.getFoodPartnerById = getFoodPartnerById;

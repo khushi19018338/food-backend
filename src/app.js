@@ -1,7 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
-
+const jwt = require('jsonwebtoken');
 const authRoutes = require('../routes/auth.routes');
 const foodRoutes = require('../routes/food.routes');
 const orderRoutes = require('../routes/order.routes');
