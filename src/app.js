@@ -8,18 +8,13 @@ const orderRoutes = require('../routes/order.routes');
 
 const app = express();
 
-// 🔥🔥🔥 CORS — FINAL FIX
+// ✅ CORS (FINAL)
 app.use(cors({
-  origin: [
-    "https://food-frontend-vercel-670gxwd7o-khushis-projects-0100d339.vercel.app"
-  ],
+  origin: "https://food-frontend-vercel-670gxwd7o-khushis-projects-0100d339.vercel.app",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
-
-// 🔥 VERY IMPORTANT — preflight support
-app.options("*", cors());
 
 app.use(cookieParser());
 app.use(express.json());
